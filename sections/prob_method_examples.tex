@@ -1,0 +1,24 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+
+\begin{document}
+The fundamental idea of the \textbf{probabilistic method} is to show the existence of objects with desired structures by proving that the probability of their existence is positive. More formally, we generally try to express the existence of desired objects as a \enquote{good} event $\overline{\bigcup_{i \in I} A_i}$, where $A_i, i \in I$ is a family of \enquote{bad} events. Then
+\begin{equation}
+	\p{\bigcup_{i \in I} A_i} \overset{\text{union bound}}{\leq} \sum_{i \in I} \p{A_i} < 1 \Rightarrow \p{\overline{\bigcup_{i \in I} A_i}} = 1 - \p{\bigcup_{i \in I} A_i} > 0
+\end{equation}
+
+\begin{remark}
+	Note that probabilistic arguments generally do \textbf{not} yield explicit constructions.
+\end{remark}
+
+\begin{example}[Ramsey numbers]
+	For $n \in \mathbb{N}$, the Ramsey numbers are defined as 
+	$$R(n) := \min\{N \in \mathbb{N} \mid \text{any 2-coloring of the edges of } K_N \text{ contains a monochromatic } K_n\}$$
+	It is known that $R(n) \leq 4^n$ (and, since 2024, that $R(n) \leq 3.8^n$).
+	
+	A trivial lower bound $(n-1)^2 < R(n)$ can be shown via the following explicit construction of a 2-coloring of $K_{(n-1)^2}$ that contains no monochromatic $K_n$. \TODO{image}
+\end{example}
+
+
+		
+\end{document}
