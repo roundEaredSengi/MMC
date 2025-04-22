@@ -2,13 +2,18 @@
 \graphicspath{{\subfix{../images/}}}
 
 \begin{document}
-The fundamental idea of the \textbf{probabilistic method} is to show the existence of objects with desired structures by proving that the probability of their existence is positive. More formally, we generally try to express the existence of desired objects as a \enquote{good} event $\overline{\bigcup_{i \in I} A_i}$, where $A_i, i \in I$ is a family of \enquote{bad} events. Then
-\begin{equation}
+The fundamental idea of the \textbf{probabilistic method} is to prove the existence of desired structures by showing the \textit{probability} of their existence to be positive. More formally, we generally try to express the existence of desired objects as a \enquote{good} event $\overline{\bigcup_{i \in I} A_i}$, where $A_i, i \in I$ is a family of \enquote{bad} events. Then by proving $\sum_{i \in I} \p{A_i} < 1$, we get
+\begin{equation}\label{eq:prob}
 	\p{\bigcup_{i \in I} A_i} \overset{\text{union bound}}{\leq} \sum_{i \in I} \p{A_i} < 1 \Rightarrow \p{\overline{\bigcup_{i \in I} A_i}} = 1 - \p{\bigcup_{i \in I} A_i} > 0
 \end{equation}
+and hence the good event $\overline{\bigcup_{i \in I} A_i}$ is non-empty.
 
-\begin{remark}
+\begin{remark}[Drawback of the Probabilistic Method]
 	Note that probabilistic arguments generally do \textbf{not} yield explicit constructions.
+\end{remark}
+
+\begin{remark}[Philosophy behind the Probabilistic Method]
+	In discrete settings, probabilistic arguments can generally be replaced by counting arguments. However, the probabilistic method is often more elegant or simple. For example, similarly, geometric arguments can often be replaced by analytic ones (e.g. calculating the intersection of lines as functions rather than talking about geometric objects).
 \end{remark}
 
 \begin{example}[Ramsey numbers]
@@ -17,8 +22,43 @@ The fundamental idea of the \textbf{probabilistic method} is to show the existen
 	It is known that $R(n) \leq 4^n$ (and, since 2024, that $R(n) \leq 3.8^n$).
 	
 	A trivial lower bound $(n-1)^2 < R(n)$ can be shown via the following explicit construction of a 2-coloring of $K_{(n-1)^2}$ that contains no monochromatic $K_n$. \TODO{image}
+	
+	\Cref{prop:ramseyLowerProb} uses the probabilistic method to show a more involved lower bound. The proof is structured as follows:
+	\bgroup
+	\begin{itemize}
+		\item in any graph $K_m$ with $m$ smaller than the lower bound
+		\item there exists a 2-coloring of the edges without a monochromatic $K_n$
+		\item because the probability that such a 2-coloring randomly occurs is positive
+	\end{itemize}
+	\egroup
 \end{example}
 
+\begin{proposition}[Erd\"os 1947]\label{prop:ramseyLowerProb}
+	If $\binom{N}{n} \cdot 2^{1-\binom{n}{2}} < 1$, then $R(n) > N$.
+\end{proposition}
 
+\begin{proof}
+Assume $m \leq N$. We want to show that there exists a 2-coloring of the edges of $K_m$ that contains a mono. $K_n$. To apply the probabilistic method, we choose a \textbf{random} edge 2-coloring, i.e. each edge is colored red or blue independently with probability $1/2$. 
+
+For $S \in \binom{[N]}{n}$, the \textbf{bad events} are 
+$$A_S := \text{the subgraph of } K_m \text{ induced by } S \text{ is a monochromatic } K_n$$
+Then $\p{A_S} = 2 \cdot 2^{-\binom{n}{2}} = 2^{1-\binom{n}{2}}$ because $S$ can be either red or blue (the first factor of $2$) and the probability that all $\binom{N}{n}$ edges of $S$ are of the same fixed color is $2^{-\binom{n}{2}}$.
+
+Hence $\sum_{S \subseteq \binom{[N]}{n})} \p{A_S} = \binom{N}{n} \cdot 2^{1-\binom{n}{2}} < 1$ and $\overline{\bigcup_{S \subseteq \binom{[N]}{n})} A_S}$ is the \textbf{good event} that no copy $S$ of $K_n$ in $K_m$ is monochromatic. Applying \Cref{eq:prob} then proves the proposition.
+\end{proof}
+
+We can improve the lower bound from \Cref{prop:ramseyLowerProb} using the same proof idea, but better approximations of the probabilities.
+\begin{corollary}[Improved Lower Bounds for $R(n)$]\label{cor:ramseyBetterProb}
+	\TODO
+\end{corollary}
+
+\begin{remark}["Construction" using the Probabilistic Method]
+	While probabilistic arguments do not yield explicit constructions, they do yield insight into the likelihood of randomly constructing a desired object. For instance, \Cref{cor:ramseyBetterProb} shows that the probability of randomly constructing an edge 2-coloring of $K_m, m \leq \frac{n}{\sqrt{2}e}\cdot\sqrt{2}^n$ that does not contain a monochromatic $K_n$ is close to $1$. In other words, the probability of the bad events $A_S$ is very small, so we can construct a good event at random.
+\end{remark}
+
+\begin{example}[Geometry(?), Dr. Arsenii Sagdeev]
+	\TODO
+\end{example}	
+	
 		
 \end{document}
