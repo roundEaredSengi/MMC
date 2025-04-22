@@ -42,7 +42,7 @@
 
 \usepackage{subfiles}
 
-\newcommand{\TODO}[1][]{\textbf{\textcolor{red}{TODO #1}}}
+\newcommand{\TODO}[1][]{\textbf{\textcolor{red}{TODO}} #1}
 \newcommand{\triangleleftneq}{\underset{\neq}{\triangleleft}}
 
 % Petrus commands
@@ -73,8 +73,8 @@
 \newcommand{\p}[1]{\mathbb{P}(#1)}
 
 \title{Modern Methods in Combinatorics}
-\author{Based on the Lectures by Dr. Arseeni Sagdeev and Problem Classes by Dingyuan Liu \\ at Karlsruhe Institute of Technology in the Summer Term 2025 \\ as well as \\ \TODO}
-\date{Summer Term 2025}
+\author{Lectures by Dr. Arseeni Sagdeev \and Problem Classes by Dingyuan Liu \and \TODO{\textcolor{red}{cite books}}}
+\date{Karlsruhe Institute of Technology, Summer Term 2025}
 
 
 \newtheorem{theorem}{Theorem}[section]
@@ -129,6 +129,7 @@ pdfauthor = {}
 \section{Probabilistic Method}
 \subfile{sections/prob_method_examples}
 
+\newpage
 \section{Problem Classes}
 \subfile{sections/problem_classes}
 
